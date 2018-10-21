@@ -1,7 +1,15 @@
 <!--Form that creates a new user, extended from template-->
 {% extends "template.html" %}
 {% block conteudo %}
-    <form action="{{ url_for('createuser') }}" method="post">
+<div class="limiter">
+  <div class="container-contact100">
+    <div class="wrap-contact100" id="next">
+      {# Título #}
+      <div class="login100-form-title">
+        <span class="contact100-form-title">Cadastre-se</span>
+      </div>
+      {# Formulario que redireciona para rotar autenticate #}
+      <form action="{{ url_for('createuser') }}" method="post">
         <fieldset>
           <div class="form-group">
             <label for="nomeusuario">Username</label>
@@ -15,7 +23,14 @@
             <label for="senha">Password</label>
             <input type="password" id="senha" name="senha" class="form-control" required minlength="6" pattern="[0-9a-fA-F]{6-100}" placeholder="6 digitos, uma maiuscula, uma minuscula e um número">
           </div>
-          <button type="submit" class="btn btn-primary btn-salvar">Salvar</button>
+          <button type="submit" class="btn  btn-salvar btn-outline-primary btn-block">Salvar</button>
         </fieldset>
-    </form>
+      </form>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
+
+
+

@@ -21,13 +21,13 @@
 
 			<div class="container position-relative margin-b-50 container-post" >
 				<div class="card mb-3">
-					<a href="#">
+					<a href="{{url_for('postview', _postid=post._id)}}">
 					<img class="card-img-top" src="{{ url_for('static', filename=post.nomeImagem) }}" alt="Card image cap">
 
 					<div class="card-body ">
 						<h3 class="card-title">{{ post.textoImagem }}</h3>
-				  </div>
-						</a>
+				  	</div>
+					</a>
 				</div>
 			</div>
 			{% endfor %}
