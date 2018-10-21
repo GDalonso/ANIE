@@ -2728,6 +2728,11 @@ h6 {
 
 	.about-section .image-wrapper{ display: none; }
 
-	.about-section .about{ margin: 0; width: 100%; padding-left: 0px; }
+	.about-section .about{ margin: 0; width: 100%; }
 
+}
+
+
+.display-table {
+  display: table;
 }

@@ -1,5 +1,5 @@
 <!--login Form, extended from template-->
-{% extends "BACKtemplate.html" %}
+{% extends "template.html" %}
 {% block conteudo %}
         <form method="POST" action="{{ url_for('authenticatelogin') }}">
             <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
