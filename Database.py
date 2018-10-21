@@ -122,3 +122,14 @@ def dblogaction(loginformation):
     except Exception as e:
         print(e)
         print("error when registering log")
+
+def dbretrievenotaprovados():
+    try:
+        collection = connectDB('posts')
+
+        lista_de_posts = []
+        for post in collection.find({"aprovado": False}).sort("dataPost", -1).limit(10):
+            lista_de_posts.append(post)
+        return lista_de_posts
+    except:
+        print("Error when retrieving from database")

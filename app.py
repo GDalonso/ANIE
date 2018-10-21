@@ -7,7 +7,7 @@ import os
 from flask import Flask, render_template, request, redirect, session, flash, url_for
 from functools import wraps
 from Database import dbinsert, dbretrieve, dbretrieveusuario, dbinsertusuario, dbretrievepost, dbretrievecategoria, \
-    removepost, dblogaction, dbretrieveusers, removeuser
+    removepost, dblogaction, dbretrieveusers, removeuser, dbretrievenotaprovados
 from werkzeug.security import check_password_hash
 # from pprint import pprint
 from markdown import markdown
@@ -48,26 +48,28 @@ def index():
 
 @app.route('/postagens')
 def postlist():
-        '''
-        List all posts in the database to the manage posts screen
-        '''
+        
+        # '''
+        # List all posts in the database to the manage posts screen
+        # '''
 
-        # dblogaction(
-        #     {'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()})  # Log the action to the database
+        # # dblogaction(
+        # #     {'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()})  # Log the action to the database
 
-        if 'user_logged' not in session or session['user_logged'] == None:
-            # Dynamic route to the login function
-            return redirect(url_for('formlogin', proxima=url_for('index')))
+        # if 'user_logged' not in session or session['user_logged'] == None:
+        #     # Dynamic route to the login function
+        #     return redirect(url_for('formlogin', proxima=url_for('index')))
 
-        # Retrieve all posts from database
-        bancolista = dbretrieve()
+        # # Retrieve all posts from database
+        # bancolista = dbretrieve()
 
-        if session['type_user'] == 'blind':
-            for b in bancolista:
-                print(b['imagemPost'])
-                b['imagemPost'] = 'https://s3.amazonaws.com/hackultura/placeholder.png'
+        # if session['type_user'] == 'blind':
+        #     for b in bancolista:
+        #         print(b['imagemPost'])
+        #         b['imagemPost'] = 'https://s3.amazonaws.com/hackultura/placeholder.png'
 
-        return render_template('adminpostslist.html', titulo='Postagens pendentes', posts=bancolista, blind=True if session['type_user'] == 'blind' else False)
+        postagens = dbretrievenotaprovados()
+        return render_template('postagenspendentes.html', titulo='Postagens pendentes', posts=postagens, blind=True if session['type_user'] == 'blind' else False)
 
 @app.route('/post/<_postid>')
 def postview(_postid: str):
