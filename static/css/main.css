@@ -2228,7 +2228,7 @@ nav a:hover {
 }
 
 .gallery-area {
-  background-color: #015786;
+  background-color: #fff;
   color: #fff;
 }
 
@@ -2664,7 +2664,10 @@ h6 {
   margin: 0;
 }
 
-
+.text-home{
+text-align: justify;
+    text-justify: inter-word;
+}
 
 
 .margin-tb-10{ margin-top: 10px; margin-bottom: 10px; }

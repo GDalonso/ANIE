@@ -231,6 +231,24 @@ def createpost():
     #Dynamic route to the index function
     return redirect(url_for('index'))
 
+@app.route('/editar/<_postid>')
+def editar(_postid: str):
+    '''
+
+    :param _postid: Post id in database
+    :return: Render the post with given id to the user
+    '''
+
+    # dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) #Log to the database
+
+    post = dbretrievepost(_postid)
+    local_post = BlogPost(nomePost=post['nomePost'], conteudoPost=post['conteudoPost'],
+                descPost=post['descPost'], categoriaPost=post['categoriaPost'],
+                imagemPost=post['imagemPost'] if session['type_user'] == 'not_blind' else 'https://s3.amazonaws.com/hackultura/placeholder.png', dataPost=post['dataPost'])
+    user = session['user_logged'] if 'user_logged' in session.keys() else None
+    #todo fix render template
+    return render_template('editarpubicação.html', titulo=post['nomePost'], post=local_post, user=user, blind=True if session['type_user'] == 'blind' else False)
+
 if __name__ == '__main__':
     app.run()
 
