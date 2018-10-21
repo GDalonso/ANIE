@@ -13,8 +13,8 @@
 
 					<div class="card-body ">
 						<h3 class="card-title">{{ post.nomePost }}</h3>
-						<button class="btn btn-primary" action="">Editar</button>
-						<button class="btn btn-success" action="">Aprovar</button>
+						<a class="btn btn-primary" href="{{url_for('editar', _postid=post._id)}}">Editar</a>
+						<a class="btn btn-success" href="{{url_for('createpost', post)}}">Aprovar</a>
 				  	</div>
 					</a>
 				</div>
