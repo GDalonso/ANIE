@@ -10,7 +10,7 @@ from Database import dbinsert, dbretrieve, dbretrieveusuario, dbinsertusuario, d
     removepost, dblogaction, dbretrieveusers, removeuser
 from werkzeug.security import check_password_hash
 # from pprint import pprint
-# from markdown import markdown
+from markdown import markdown
 from models import BlogPost, User
 from datetime import datetime
 from PIL import Image
@@ -37,6 +37,7 @@ def index():
         posts.append({'nomeImagem': 'img/about-img.jpg', 'textoImagem': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'})
         if 'type_user' in session.keys() and session['type_user'] == 'not_blind':
             bancolista = dbretrieve()
+            user =  session['user_logged'] if 'user_logged' in session.keys() else None
             # todo DAR DISPLAY NO POST
             return render_template('not_blind/index.html', titulo="Anie", posts=posts, user=user)
         elif 'type_user' in session.keys() and session['type_user'] == 'blind':
@@ -194,6 +195,40 @@ def deletepost(_postid: str):
     post = removepost(_postid)
     return postlist()
 
+# CRUDs
+@app.route('/novo')
+def formcreatepost():
+    '''
+    Show the view to create a new post
+    '''
+
+    if 'user_logged' not in session or session['user_logged'] == None:
+        #build a dynamic url to the login function if user if not logged in
+        return redirect(url_for('formlogin', proxima=url_for('formlogin')))
+    return render_template('novo.html', titulo='Novo Jogo')
+
+@app.route('/criar', methods=['POST',])
+def createpost():
+    '''
+    Create a new post object in the database with the form contents
+    '''
+
+    #Contents of the form
+    nomePost = request.form['nomePost']
+    conteudoPost = markdown(request.form['conteudoPost']).replace('<img alt', '<img style="max-width: 70%;" alt')
+    descPost = request.form['descPost']
+    categoriaPost = request.form['categoriaPost']
+    imagemPost = request.form['imagemPost']
+    post = BlogPost(nomePost=nomePost, conteudoPost=conteudoPost, descPost=descPost, categoriaPost=categoriaPost, imagemPost=imagemPost)
+
+    #Insert the object converted to dict in the database
+    dbinsert(post.__dict__)
+    dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()})
+
+    #Dynamic route to the index function
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run()
+
 
