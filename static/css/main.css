@@ -2691,3 +2691,13 @@ h6 {
     font-size: 18px;
     font-weight: bold;
 }
+
+.post-content-body{
+font-size: 1.5em;
+text-align: justify;
+    text-justify: inter-word;
+
+}
+.categories-date {
+font-size: 1.5em;
+}

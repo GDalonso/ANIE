@@ -36,7 +36,7 @@ def index():
         posts = dbretrieve()
         if 'type_user' in session.keys() and session['type_user'] == 'not_blind':
             bancolista = dbretrieve()
-            user =  session['user_logged'] if 'user_logged' in session.keys() else None
+            user = session['user_logged'] if 'user_logged' in session.keys() else None
             # todo DAR DISPLAY NO POST
             return render_template('not_blind/index.html', titulo="Anie", posts=posts, user=user)
         elif 'type_user' in session.keys() and session['type_user'] == 'blind':

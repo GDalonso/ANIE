@@ -2,28 +2,29 @@
 {% block conteudo %}
 
     <section class="site-section py-lg">
-      <div class="container">
+      <div class="container margin-tb-30">
         
         <div class="row blog-entries">
           <div class="col-md-12 col-lg-8 main-content">
             <h1 class="mb-4">{{post.nomePost}}</h1>
             <div class="post-meta">
-                        <span class="category">{{post.categoryPost}}</span>
-                        <span class="mr-2">{{post.dataPost.strftime('%Y-%m-%d %H:%M')}}</span> &bullet;
-                      </div>
+              <span class="category categories-date" >{{post.categoryPost}}</span>
+              <span class="mr-2 categories-date">{{post.dataPost.strftime('%Y-%m-%d %H:%M')}}</span> &bullet;
+            </div>
+            {% if post.imagemPost %}
+            <div class="margin-b-50" >
+              <div class="card mb-3">
+                <img class="card-img-top" src="{{ post.imagemPost }}">
+              </div>
+			</div>
+            {% endif %}
             <div class="post-content-body">
               <p>{{post.html_content}}</p>
-              <div class="row mb-5">
-              <div class="col-md-12 mb-4 element-animate">
-              </div>
-            </div>
-            </div>
 
-            <div class="pt-5">
-              <p>Categories:  <a href="#">{{post.categoriaPost}}</a></p>
             </div>
-
-
+            <div class="pt-5 categories-date">
+              <p>Categorias:  <a href="#">{{post.categoriaPost}}</a></p>
+            </div>
           </div>
         </div>
       </div>
