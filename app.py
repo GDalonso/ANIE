@@ -46,7 +46,7 @@ def index():
             user = session['user_logged'] if 'user_logged' in session.keys else None
             return render_template('not_blind/index.html', titulo="Anie", posts=posts, user=user)
 
-    return render_template('select_type.html', titulo="Anie", logged=)
+    return render_template('select_type.html', titulo="Anie")
 
 @app.route('/postagens')
 def postlist():
