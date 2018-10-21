@@ -4,7 +4,8 @@ from bson.objectid import ObjectId
 def connectDB(coll = "NASA"):
     try:
         #Create the auth client in mlab
-        client = MongoClient('mongodb://master:Cu5+Bk7<@ds261429.mlab.com:61429/nasa')
+        client = MongoClient('mongodb://Master:BabegaWrovDeAv6@ds261429.mlab.com:61429/nasa')
+        # client = MongoClient('mongodb://Master:asJGa876@ds227119.mlab.com:27119/desafioestagio')
         #Select the database we want to use
         db = client.nasa
         #Return the desired collection
@@ -15,7 +16,9 @@ def connectDB(coll = "NASA"):
         # elif coll == 'logs':
         #     return db.logsflaskapp
 
-    except:
+
+    except Exception as e:
+        print(e)
         print ("Error trying to connect to database")
 
 
@@ -80,7 +83,8 @@ def dbinsertusuario(usuarioainserir):
         print(usuarioainserir)
         doc_id = collection.insert_one(usuarioainserir).inserted_id
         print(doc_id)
-    except:
+    except Exception as e:
+        print(e)
         print("error writing to database")
 
 def dbretrieveusuario(usuario):
