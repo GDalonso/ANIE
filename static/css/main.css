@@ -2697,8 +2697,7 @@ h6 {
 
 .about-section{ overflow: hidden; position: relative; background: #fff; padding: 120px 0;}
 
-.about-section .image-wrapper{ width: 30%;position: absolute;
-	top: 0; bottom: 0; left: 0; text-align: right; }
+.about-section .image-wrapper{ width: 30%;position: absolute;}
 
 .about-section .image-wrapper img{  max-width: 300px; }
 
@@ -2728,11 +2727,31 @@ h6 {
 
 	.about-section .image-wrapper{ display: none; }
 
-	.about-section .about{ margin: 0; width: 100%; }
+	.about-section .about{ margin: 0; width: 100%; padding-left: 0px; }
 
 }
 
 
 .display-table {
   display: table;
+}
+
+
+.margin-tb-10{ margin-top: 10px; margin-bottom: 10px; }
+.margin-tb-20{ margin-top: 20px; margin-bottom: 20px; }
+.margin-tb-30{ margin-top: 30px; margin-bottom: 30px; }
+
+.margin-b-10{ margin-bottom: 10px; }
+.margin-b-20{ margin-bottom: 20px; }
+.margin-b-30{ margin-bottom: 30px; }
+.margin-b-50{ margin-bottom: 50px; }
+.margin-b-80{ margin-bottom: 80px; }
+.margin-t-5{ margin-top: 5px; }
+
+.margin-lr-10{ margin-left: 10px; margin-right: 10px; }
+
+.padding-lr-0{ padding-left: 0; padding-right: 0; }
+
+.container .img {
+   width: 80%;
 }
