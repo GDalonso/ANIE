@@ -223,7 +223,7 @@ def createpost():
 
     #Insert the object converted to dict in the database
     dbinsert(post.__dict__)
-    dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()})
+    # dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()})
 
     #Dynamic route to the index function
     return redirect(url_for('index'))

@@ -26,7 +26,7 @@ def connectDB(coll = "NASA"):
 #Receive a document and insert in the database
 def dbinsert(DocumentoInserir):
     try:
-        collection = connectDB('NASA')
+        collection = connectDB('posts')
         #Insert the document and print the id
         doc_id = collection.insert_one(DocumentoInserir).inserted_id
         print(doc_id)
@@ -35,7 +35,7 @@ def dbinsert(DocumentoInserir):
 
 def dbretrieve():
     try:
-        collection = connectDB('NASA')
+        collection = connectDB('posts')
 
         lista_de_posts = []
         for post in collection.find().sort("dataPost", -1).limit(10):
@@ -46,7 +46,7 @@ def dbretrieve():
 
 def dbretrievepost(_postId):
     try:
-        collection = connectDB('NASA')
+        collection = connectDB('posts')
         post = collection.find_one({"_id": ObjectId(_postId)})
         return post
     except:
@@ -54,21 +54,21 @@ def dbretrievepost(_postId):
 
 def removepost(_postId):
     try:
-        collection = connectDB('NASA')
+        collection = connectDB('posts')
         collection.remove({"_id": ObjectId(_postId)})
     except:
         print("error when deleting post")
 
 def updatepost(_postId):
     try:
-        collection = connectDB('NASA')
+        collection = connectDB('posts')
         collection.update_one({"_id": ObjectId(_postId)})
     except:
         print("error to update post")
 
 def dbretrievecategoria(_categoria="batata"):
     try:
-        collection = connectDB('NASA')
+        collection = connectDB('posts')
         listadeposts = []
         for post in collection.find({"categoriaPost": {"$regex": _categoria}}):
             listadeposts.append(post)
