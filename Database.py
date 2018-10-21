@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from flask import flash
 
 def connectDB(coll = "NASA"):
     try:
@@ -85,7 +86,7 @@ def dbinsertusuario(usuarioainserir):
         doc_id = collection.insert_one(usuarioainserir).inserted_id
         print(doc_id)
     except Exception as e:
-        print(e)
+        flash("Erro ao cadastrar usuário. Por favor, verifique os dados digitados")
         print("error writing to database")
 
 def dbretrieveusuario(usuario):

@@ -134,9 +134,8 @@ def authenticatelogin():
             flash(usuario["username"] + ' is now logged!')
             proxima_pagina = request.form['proxima']
             return redirect(proxima_pagina)
-
     # Show the error message if login fails
-    flash('User or Passowrd incorrect, try again')
+    flash('Senha ou usuário incorretos, tente novamente.')
     return redirect(url_for('formlogin'))
 
 @app.route('/logout')

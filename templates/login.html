@@ -2,6 +2,7 @@
 {% extends "template.html" %}
 {% block conteudo %}
 
+
 {# Caixa #}
 <div class="limiter">
   <div class="container-contact100">
@@ -15,6 +16,7 @@
             <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
             <p><label>Username:</label> <input class="form-control" type="text" name="usuario" required></p>
             <p><label>Password:</label> <input class="form-control" type="password" name="senha" required></p>
+            {% include "template/flash.html" %}
             <p><button class="btn btn-outline-primary btn-block" type="submit">Log in</button></p>
         </form>
     </div>
