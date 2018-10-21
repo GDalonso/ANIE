@@ -21,13 +21,14 @@ class User:
 # oembed_providers = bootstrap_basic(OEmbedCache())
 class BlogPost:
     def __init__(self, nomePost, conteudoPost, descPost, categoriaPost,
-                 imagemPost=None, dataPost=None):
+                 imagemPost=None, dataPost=None, aprovado=False):
         self.nomePost = nomePost
         self.conteudoPost = conteudoPost
         self.descPost = descPost
         self.categoriaPost = categoriaPost
         self.imagemPost = imagemPost
         self.dataPost = dataPost if dataPost else datetime.datetime.now()
+        self.aprovado = aprovado
 
     @property
     def html_content(self):
