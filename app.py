@@ -35,15 +35,14 @@ def index():
         user = session['user_logged'] if 'user_logged' in session.keys() else None
         posts = dbretrieve()
         if 'type_user' in session.keys() and session['type_user'] == 'not_blind':
-            bancolista = dbretrieve()
             user = session['user_logged'] if 'user_logged' in session.keys() else None
-            # todo DAR DISPLAY NO POST
-            return render_template('not_blind/index.html', titulo="Anie", posts=posts, user=user)
+            return render_template('not_blind/index.html', titulo="Anie", posts=posts, user=user, type=False)
         elif 'type_user' in session.keys() and session['type_user'] == 'blind':
-            bancolista = dbretrieve()
-            # todo DAR DISPLAY NO POST
+            if session['type_user'] == 'blind':
+                for b in posts:
+                    b['imagemPost'] = 'https://s3.amazonaws.com/hackultura/placeholder.png'
             user = session['user_logged'] if 'user_logged' in session.keys() else None
-            return render_template('not_blind/index.html', titulo="Anie", posts=posts, user=user)
+            return render_template('not_blind/index.html', titulo="Anie", posts=posts, user=user, blind=True)
 
     return render_template('select_type.html', titulo="Anie")
 
@@ -62,7 +61,13 @@ def postlist():
 
         # Retrieve all posts from database
         bancolista = dbretrieve()
-        return render_template('adminpostslist.html', titulo='Postagens pendentes', posts=bancolista)
+
+        if session['type_user'] == 'blind':
+            for b in bancolista:
+                print(b['imagemPost'])
+                b['imagemPost'] = 'https://s3.amazonaws.com/hackultura/placeholder.png'
+
+        return render_template('adminpostslist.html', titulo='Postagens pendentes', posts=bancolista, blind=True if session['type_user'] == 'blind' else False)
 
 @app.route('/post/<_postid>')
 def postview(_postid: str):
@@ -77,10 +82,10 @@ def postview(_postid: str):
     post = dbretrievepost(_postid)
     local_post = BlogPost(nomePost=post['nomePost'], conteudoPost=post['conteudoPost'],
                 descPost=post['descPost'], categoriaPost=post['categoriaPost'],
-                imagemPost=post['imagemPost'], dataPost=post['dataPost'])
+                imagemPost=post['imagemPost'] if session['type_user'] == 'not_blind' else 'https://s3.amazonaws.com/hackultura/placeholder.png', dataPost=post['dataPost'])
     user = session['user_logged'] if 'user_logged' in session.keys() else None
     #todo fix render template
-    return render_template('postview.html', titulo=post['nomePost'], post=local_post, user=user)
+    return render_template('postview.html', titulo=post['nomePost'], post=local_post, user=user, blind=True if session['type_user'] == 'blind' else False)
 
 @app.route('/categoria/<_category>')
 def categorie(_category: str):
@@ -95,7 +100,7 @@ def categorie(_category: str):
     postsincategory = dbretrievecategoria(_category)
     if postsincategory:
         user = session['user_logged'] if 'user_logged' in session.keys() else None
-        return render_template('categorie.html', titulo=_category, posts=postsincategory, user=user)
+        return render_template('categorie.html', titulo=_category, posts=postsincategory, user=user, blind=True if session['type_user'] == 'blind' else False)
     else:
         return render_template('notfound.html')
 
