@@ -40,7 +40,6 @@ def index():
 
 @app.route('/postagens')
 def postlist():
-    def postslist():
         '''
         List all posts in the database to the manage posts screen
         '''
@@ -55,7 +54,7 @@ def postlist():
         # Retrieve all posts from database
         bancolista = dbretrieve()
         return render_template('adminpostslist.html', titulo='Latest Posts', posts=bancolista)
-    
+
 @app.route('/post/<_postid>')
 def postview(_postid: str):
     '''
@@ -182,7 +181,7 @@ def deletepost(_postid: str):
         return redirect(url_for('formlogin', proxima=url_for('index')))
 
     post = removepost(_postid)
-    return postslist()
+    return postlist()
 
 if __name__ == '__main__':
     app.run()

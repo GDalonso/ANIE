@@ -4,11 +4,11 @@ from bson.objectid import ObjectId
 def connectDB(coll = "NASA"):
     try:
         #Create the auth client in mlab
-        client = MongoClient('mongodb://Master:asJGa876@ds227119.mlab.com:27119/desafioestagio')
+        client = MongoClient('mongodb://master:Cu5+Bk7<@ds261429.mlab.com:61429/nasa')
         #Select the database we want to use
-        db = client.desafioestagio
+        db = client.nasa
         #Return the desired collection
-        coll = 'NASA'
+        coll = 'posts'
 
     except:
         print ("Error trying to connect to database")
