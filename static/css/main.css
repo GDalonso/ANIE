@@ -1929,7 +1929,7 @@ nav.hide {
 
 nav a {
   color: #fff;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 500;
 
   margin: 0 25px;
@@ -2301,7 +2301,7 @@ nav a:hover {
 
 .about-right {
   padding-right: 8%;
-  padding-left: 5%;
+  padding-left: 2%;
 }
 
 @media (max-width: 1199px) {
@@ -2665,8 +2665,29 @@ h6 {
   margin: 0;
 }
 
+.image-post {
 
-.img-fluid {
-  max-width: 50%;
+    object-fit: contain;
+}
+
+
+.image-post {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+}
+.image-post img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.image-post img.portrait {
+  width: 100%;
   height: auto;
 }

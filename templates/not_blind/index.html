@@ -20,16 +20,16 @@
 			<section class="about-area section-gap" id="about">
 				<div class="container">
 					<div class="row d-flex align-items-center">
+						{% for post in posts %}
 						<div class="col-lg-6 about-left">
-							<img class="img-fluid" src="{{ url_for('static', filename='img/about-img.jpg') }}">
+							<img class="image-post " src="{{ url_for('static', filename='img/about-img.jpg') }}">
 						</div>
 						<div class="col-lg-6 about-right">
-							<h1>
-								O é um software de identificação de culturas em imagens de satélite.
-							</h1>
+							<h1>{{ post['nomeImagem'] }}</h1>
 						</div>
+						{% endfor %}
 					</div>
-				</div>	
+				</div>
 			</section>
 			<!-- End About Area -->
 
