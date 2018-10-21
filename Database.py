@@ -8,10 +8,16 @@ def connectDB(coll = "NASA"):
         #Select the database we want to use
         db = client.nasa
         #Return the desired collection
-        coll = 'posts'
+        if coll == 'posts':
+            return db.posts
+        elif coll == 'users':
+            return db.usuariosnasa
+        # elif coll == 'logs':
+        #     return db.logsflaskapp
 
     except:
         print ("Error trying to connect to database")
+
 
 
 #Receive a document and insert in the database
