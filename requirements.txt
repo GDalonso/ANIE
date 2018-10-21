@@ -5,3 +5,4 @@ pymongo
 pillow
 markdown
 micawber
+beautifulsoup4
