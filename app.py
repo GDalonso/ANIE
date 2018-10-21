@@ -62,7 +62,7 @@ def postlist():
 
         # Retrieve all posts from database
         bancolista = dbretrieve()
-        return render_template('adminpostslist.html', titulo='Latest Posts', posts=bancolista)
+        return render_template('adminpostslist.html', titulo='Postagens pendentes', posts=bancolista)
 
 @app.route('/post/<_postid>')
 def postview(_postid: str):
@@ -204,7 +204,7 @@ def formcreatepost():
     if 'user_logged' not in session or session['user_logged'] == None:
         #build a dynamic url to the login function if user if not logged in
         return redirect(url_for('formlogin', proxima=url_for('formlogin')))
-    return render_template('novapublicacao.html', titulo='Novo Jogo')
+    return render_template('novapublicacao.html', titulo='Nova publicação')
 
 @app.route('/criar', methods=['POST',])
 def createpost():
