@@ -12,7 +12,12 @@
 					<img class="card-img-top" src="{{ post.imagemPost }}" alt="Card image cap">
 					<div class="card-body ">
 						<h3 class="card-title">{{ post.nomePost }}</h3>
+<<<<<<< HEAD
 
+=======
+						<a class="btn btn-primary" href="{{url_for('editar', _postid=post._id)}}">Editar</a>
+						<a class="btn btn-success" href="{{url_for('createpost', post)}}">Aprovar</a>
+>>>>>>> 6fbf7a44eb3244b3b8d1a8f40c0ce11eff2fdd52
 				  	</div>
 					</a>
 				</div>
