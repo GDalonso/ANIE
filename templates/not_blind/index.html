@@ -15,23 +15,27 @@
 			</section>
 			<!-- End banner Area -->	
 
+		{# Seção sobre #}
+		<section class="about-section section  margin-b-30" id="about">
+			{% for post in posts %}
 
-			<!-- Start About Area -->
-			<section class="about-area section-gap" id="about">
-				<div class="container">
-					<div class="row d-flex align-items-center">
-						{% for post in posts %}
-						<div class="col-lg-6 about-left">
-							<img class="image-post " src="{{ url_for('static', filename='img/about-img.jpg') }}">
+			<div class="container position-relative">
+				<div class="image-wrapper">
+					<div class="display-table">
+						{# Imagem lado esquerdo #}
+						<div class="display-table-cell">
+							<img src="{{ url_for('static', filename=post.nomeImagem) }}" alt="">
 						</div>
-						<div class="col-lg-6 about-right">
-							<h1>{{ post['nomeImagem'] }}</h1>
-						</div>
-						{% endfor %}
 					</div>
 				</div>
-			</section>
-			<!-- End About Area -->
+				{# Texto #}
+				<div class="about">
+					<h3>{{ post.textoImagem }}</h3>
+				</div>
+			</div>
+			{% endfor %}
+
+		</section>
 
 
 

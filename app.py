@@ -33,17 +33,17 @@ def index():
         session['type_user'] = request.args.get('type_user')
     else:
 
-        posts.append({'nomeImagem': 'img/about-img.jpg', 'textoImagem': 'gfg'})
+        posts.append({'nomeImagem': 'img/about-img.jpg', 'textoImagem': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'})
         if 'type_user' in session.keys() and session['type_user'] == 'not_blind':
             bancolista = dbretrieve()
             # todo DAR DISPLAY NO POST
-        return render_template('not_blind/index.html', titulo="Anie")
-    elif 'type_user' in session.keys() and session['type_user'] == 'blind':
-        bancolista = dbretrieve()
-        # todo DAR DISPLAY NO POST
-            return render_template('not_blind/index.html', titulo="Anie")
+            return render_template('not_blind/index.html', titulo="Anie", posts=posts)
+        elif 'type_user' in session.keys() and session['type_user'] == 'blind':
+            bancolista = dbretrieve()
+            # todo DAR DISPLAY NO POST
+            return render_template('not_blind/index.html', titulo="Anie", posts=posts)
 
-    return render_template('select_type.html', titulo="Anie", posts=posts)
+    return render_template('select_type.html', titulo="Anie")
 
 @app.route('/postagens')
 def postlist():
@@ -51,8 +51,8 @@ def postlist():
         List all posts in the database to the manage posts screen
         '''
 
-        dblogaction(
-            {'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()})  # Log the action to the database
+        # dblogaction(
+        #     {'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()})  # Log the action to the database
 
         if 'user_logged' not in session or session['user_logged'] == None:
             # Dynamic route to the login function
@@ -70,7 +70,7 @@ def postview(_postid: str):
     :return: Render the post with given id to the user
     '''
 
-    dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) #Log to the database
+    # dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) #Log to the database
 
     post = dbretrievepost(_postid)
     local_post = BlogPost(nomePost=post['nomePost'], conteudoPost=post['conteudoPost'],
@@ -87,7 +87,7 @@ def categorie(_category: str):
     :return: The categories view with the posts by that category
     '''
 
-    dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) #Log action to the database
+    # dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) #Log action to the database
 
     postsincategory = dbretrievecategoria(_category)
     if postsincategory:
@@ -102,7 +102,7 @@ def formlogin():
     present to the user the login screen
     '''
 
-    dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) #log the action to the database
+    # dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) #log the action to the database
 
     proxima = request.args.get('proxima')
     return render_template('login.html', proxima=proxima)
@@ -146,9 +146,9 @@ def formcreateuser():
     Shows the new user creation screen to the user
     '''
 
-    if 'user_logged' not in session or session['user_logged'] == None:
-        # Dynamic route to the login function
-        return redirect(url_for('formlogin', proxima=url_for('index')))
+    # if 'user_logged' not in session or session['user_logged'] == None:
+    #     # Dynamic route to the login function
+    #     return redirect(url_for('formlogin', proxima=url_for('index')))
     return render_template('criausuario.html', titulo='Novo usuario')
 
 
@@ -158,7 +158,7 @@ def createuser():
     Create a User with the create user form contents
     '''
 
-    dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) #Log the action to the database
+    # dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) #Log the action to the database
 
     # Form contents
     nomeusuario = request. form['nomeusuario']
@@ -181,7 +181,7 @@ def deletepost(_postid: str):
     :param _postid: Id of a post to be removed from database
     '''
 
-    dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) # Log the action to the database
+    # dblogaction({'Log': str(request), 'ip': request.remote_addr, 'time': datetime.now()}) # Log the action to the database
 
     if 'user_logged' not in session or session['user_logged'] == None:
         # Dynamic route to the login function
