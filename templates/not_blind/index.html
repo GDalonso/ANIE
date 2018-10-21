@@ -6,7 +6,10 @@
 					<div class="carousel-inner" role="listbox">
 						<div class="carousel-item active" style="background-color:#015786; max-height:350px">
 							<div class="carousel-caption d-md-block">
-								<h2 class="title-header-map">ANIE</h2>
+								<!--<h2 class="title-header-map">Seja bem-vindo a página de postagens</h2>-->
+								<p class="text-description">
+								Seja bem-vindo a página de publicações
+				              </p>
 							</div>
 						</div>
 					</div>
@@ -22,10 +25,10 @@
 			<div class="container position-relative margin-b-50 container-post" >
 				<div class="card mb-3">
 					<a href="{{url_for('postview', _postid=post._id)}}">
-					<img class="card-img-top" src="{{ url_for('static', filename=post.nomeImagem) }}" alt="Card image cap">
+					<img class="card-img-top" src="{{ post.imagemPost }}" alt="Card image cap">
 
 					<div class="card-body ">
-						<h3 class="card-title">{{ post.textoImagem }}</h3>
+						<h3 class="card-title">{{ post.nomePost }}</h3>
 				  	</div>
 					</a>
 				</div>

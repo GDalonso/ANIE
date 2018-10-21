@@ -3,8 +3,8 @@ import datetime
 from markdown import markdown
 from markdown.extensions.codehilite import CodeHiliteExtension
 from markdown.extensions.extra import ExtraExtension
-# from micawber import bootstrap_basic, parse_html
-# from micawber.cache import Cache as OEmbedCache
+from micawber import bootstrap_basic, parse_html
+from micawber.cache import Cache as OEmbedCache
 from flask import Markup
 
 
@@ -17,8 +17,7 @@ class User:
     def set_password(self, password):
         self.pw_hash = generate_password_hash(password)
 
-#
-# oembed_providers = bootstrap_basic(OEmbedCache())
+oembed_providers = bootstrap_basic(OEmbedCache())
 class BlogPost:
     def __init__(self, nomePost, conteudoPost, descPost, categoriaPost,
                  imagemPost=None, dataPost=None, aprovado=False):

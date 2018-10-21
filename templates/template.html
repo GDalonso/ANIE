@@ -31,6 +31,7 @@
                                 <a href="{{ url_for('formlogin') }}">Login</a>
                                 <a href="{{ url_for('formcreateuser') }}">Cadastrar</a>
                                 {% else %}
+                                <a href="{{ url_for('formcreatepost') }}">Nova publicação</a>
                                 <a href="{{ url_for('logout') }}">Logout</a>
                                 {% endif %}
                             </nav>

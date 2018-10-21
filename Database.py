@@ -30,7 +30,8 @@ def dbinsert(DocumentoInserir):
         #Insert the document and print the id
         doc_id = collection.insert_one(DocumentoInserir).inserted_id
         print(doc_id)
-    except:
+    except Exception as e:
+        print (e)
         print("Error trying to write to database")
 
 def dbretrieve():

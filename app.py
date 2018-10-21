@@ -33,8 +33,7 @@ def index():
         session['type_user'] = request.args.get('type_user')
     else:
         user = session['user_logged'] if 'user_logged' in session.keys() else None
-        posts.append({'nomeImagem': 'img/about-img.jpg', 'textoImagem': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'})
-        posts.append({'nomeImagem': 'img/about-img.jpg', 'textoImagem': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'})
+        posts = dbretrieve()
         if 'type_user' in session.keys() and session['type_user'] == 'not_blind':
             bancolista = dbretrieve()
             user =  session['user_logged'] if 'user_logged' in session.keys() else None
@@ -143,7 +142,7 @@ def logout():
 
     session['user_logged'] = None
     flash('You need to log in to see this page!')
-    return redirect(url_for('formlogin'))
+    return redirect(url_for('index'))
 
 @app.route('/novousuario')
 def formcreateuser():
@@ -205,7 +204,7 @@ def formcreatepost():
     if 'user_logged' not in session or session['user_logged'] == None:
         #build a dynamic url to the login function if user if not logged in
         return redirect(url_for('formlogin', proxima=url_for('formlogin')))
-    return render_template('novo.html', titulo='Novo Jogo')
+    return render_template('novapublicacao.html', titulo='Novo Jogo')
 
 @app.route('/criar', methods=['POST',])
 def createpost():

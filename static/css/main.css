@@ -2687,3 +2687,7 @@ h6 {
     -o-background-size: cover;      /* Opera*/
     background-size: cover;         /* Generic*/}
 
+.text-title-form {
+    font-size: 18px;
+    font-weight: bold;
+}
