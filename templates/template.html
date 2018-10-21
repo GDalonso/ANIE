@@ -17,30 +17,32 @@
 
     </head>
     <body>
-        <!--<header class="default-header">-->
-            <!--<div class="container">-->
-                <!--<div class="header-wrap">-->
-                    <!--<div class="header-top d-flex justify-content-between align-items-center">-->
-                        <!--<div class="logo">-->
-                            <!--<a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" alt=""></a>-->
-                        <!--</div>-->
-                        <!--<div class="main-menubar d-flex align-items-center">-->
-                            <!--<nav class="hide">-->
-                                <!--<a href="{{ url_for('index') }}">Ínicio</a>-->
-                                <!--{% if not user %}-->
-                                <!--<a href="{{ url_for('formlogin') }}">Login</a>-->
-                                <!--<a href="{{ url_for('formcreateuser') }}">Cadastrar</a>-->
-                                <!--{% else %}-->
-                                <!--<a href="{{ url_for('formcreatepost') }}">Nova publicação</a>-->
-                                <!--<a href="{{ url_for('logout') }}">Logout</a>-->
-                                <!--{% endif %}-->
-                            <!--</nav>-->
-                            <!--<div class="menu-bar"><span class="lnr lnr-menu"></span></div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</header>-->
+        {% if not blind %}
+        <header class="default-header">
+            <div class="container">
+                <div class="header-wrap">
+                    <div class="header-top d-flex justify-content-between align-items-center">
+                        <div class="logo">
+                            <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" alt=""></a>
+                        </div>
+                        <div class="main-menubar d-flex align-items-center">
+                            <nav class="hide">
+                                <a href="{{ url_for('index') }}">Ínicio</a>
+                                {% if not user %}
+                                <a href="{{ url_for('formlogin') }}">Login</a>
+                                <a href="{{ url_for('formcreateuser') }}">Cadastrar</a>
+                                {% else %}
+                                <a href="{{ url_for('formcreatepost') }}">Nova publicação</a>
+                                <a href="{{ url_for('logout') }}">Logout</a>
+                                {% endif %}
+                            </nav>
+                            <div class="menu-bar"><span class="lnr lnr-menu"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        {% endif %}
     {% block conteudo %}
     {% endblock conteudo %}
         {% if titulo != "Resultado" %}
