@@ -16,21 +16,18 @@
 			<!-- End banner Area -->	
 
 		{# Seção sobre #}
-		<section class="about-section section " id="about">
+		<section class="about-section section margin-tb-30" id="about">
 			{% for post in posts %}
 
-			<div class="container position-relative margin-b-50" style="border-style: solid;">
-				<div class="image-wrapper">
-					<div class="display-table">
-						{# Imagem lado esquerdo #}
-						<div class="display-table-cell">
-							<img src="{{ url_for('static', filename=post.nomeImagem) }}" style="max-width: 250px;">
-						</div>
-					</div>
-				</div>
-				{# Texto #}
-				<div class="about">
-					<h3>{{ post.textoImagem }}</h3>
+			<div class="container position-relative margin-b-50 container-post" >
+				<div class="card mb-3">
+					<a href="#">
+					<img class="card-img-top" src="{{ url_for('static', filename=post.nomeImagem) }}" alt="Card image cap">
+
+					<div class="card-body ">
+						<h3 class="card-title">{{ post.textoImagem }}</h3>
+				  </div>
+						</a>
 				</div>
 			</div>
 			{% endfor %}
@@ -38,65 +35,5 @@
 		</section>
 
 
-
-			<!-- Start blog Area -->
-			<section class="gallery-area section-gap" id="blog">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-md-8 pb-30 header-text">
-							<h1 class="text-white">Como funciona?</h1>
-						</div>
-					</div>
-					<div class="row">	
-						<div class="single-blog col-lg-4 col-md-4">
-							<center>
-							<div style="max-width:150px;">
-								<img class="info-img" src="{{ url_for('static', filename='img/map.png') }}" alt="">
-							</div>
-							<h4 class="text-white">
-								<a>Digite o endereço ou a latitude e longitude do local a ser analisado.</a>
-							</h4>
-								</center>
-						</div>
-					<div class="single-blog col-lg-4 col-md-4">
-
-							<center>
-							<div style="max-width:150px;">
-								<img class="info-img" src="{{ url_for('static', filename='img/layers.png') }}" alt="">
-							</div>
-							<h4 class="text-white">
-								<a >O sistema analisa a imagem e identifica se há plantações de laranja.</a>
-							</h4>
-								</center>
-						</div>
-						<div class="single-blog col-lg-4 col-md-4">
-							<center>
-							<div style="max-width:150px;">
-								<img class="info-img" src="{{ url_for('static', filename='img/leaf.png') }}" alt="">
-							</div>
-							<h4 class="text-white">
-								<a >E pronto. Vamos te retornar o resultado.</br>Simples e rápido.</a>
-							</h4>
-							</center>
-						</div>
-					</div>
-				</div>	
-			</section>
-			<!-- end blog Area -->	
-
-
-						<!-- Start callto Area -->
-			<section class="callto-area pt-100 pb-100">
-				<div class="container">
-					<div class="row">
-						 <div class="col-lg-9 callto-left">
-						 	<h1>E aí, bora testar?</h1>
-						 </div>
-						 <div class="col-lg-3 callto-right">
-						 </div>
-					</div>
-				</div>
-			</section>
-			<!-- End callto Area -->
 
 {% endblock conteudo %}

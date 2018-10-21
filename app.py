@@ -32,21 +32,20 @@ def index():
     if request.args.get('type_user') and not 'type_user' in session.keys():
         session['type_user'] = request.args.get('type_user')
     else:
-
+        user = session['user_logged'] if 'user_logged' in session.keys() else None
         posts.append({'nomeImagem': 'img/about-img.jpg', 'textoImagem': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'})
         posts.append({'nomeImagem': 'img/about-img.jpg', 'textoImagem': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'})
         if 'type_user' in session.keys() and session['type_user'] == 'not_blind':
             bancolista = dbretrieve()
-            user =  session['user_logged'] if 'user_logged' in session.keys else None
             # todo DAR DISPLAY NO POST
             return render_template('not_blind/index.html', titulo="Anie", posts=posts, user=user)
         elif 'type_user' in session.keys() and session['type_user'] == 'blind':
             bancolista = dbretrieve()
             # todo DAR DISPLAY NO POST
-            user = session['user_logged'] if 'user_logged' in session.keys else None
+            user = session['user_logged'] if 'user_logged' in session.keys() else None
             return render_template('not_blind/index.html', titulo="Anie", posts=posts, user=user)
 
-    return render_template('select_type.html', titulo="Anie", logged=)
+    return render_template('select_type.html', titulo="Anie", user=user)
 
 @app.route('/postagens')
 def postlist():
@@ -79,7 +78,7 @@ def postview(_postid: str):
     local_post = BlogPost(nomePost=post['nomePost'], conteudoPost=post['conteudoPost'],
                 descPost=post['descPost'], categoriaPost=post['categoriaPost'],
                 imagemPost=post['imagemPost'], dataPost=post['dataPost'])
-    user = session['user_logged'] if 'user_logged' in session.keys else None
+    user = session['user_logged'] if 'user_logged' in session.keys() else None
     #todo fix render template
     return render_template('postview.html', titulo=post['nomePost'], post=local_post, user=user)
 
@@ -95,7 +94,7 @@ def categorie(_category: str):
 
     postsincategory = dbretrievecategoria(_category)
     if postsincategory:
-        user = session['user_logged'] if 'user_logged' in session.keys else None
+        user = session['user_logged'] if 'user_logged' in session.keys() else None
         return render_template('categorie.html', titulo=_category, posts=postsincategory, user=user)
     else:
         return render_template('notfound.html')
