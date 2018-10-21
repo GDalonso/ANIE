@@ -2665,7 +2665,8 @@ h6 {
   margin: 0;
 }
 
-.img-fluid{
-max-size:200px;
 
+.img-fluid {
+  max-width: 50%;
+  height: auto;
 }
