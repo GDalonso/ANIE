@@ -6,7 +6,6 @@ def connectDB(coll = "NASA"):
     try:
         #Create the auth client in mlab
         client = MongoClient('mongodb://Master:BabegaWrovDeAv6@ds261429.mlab.com:61429/nasa')
-        # client = MongoClient('mongodb://Master:asJGa876@ds227119.mlab.com:27119/desafioestagio')
         #Select the database we want to use
         db = client.nasa
         #Return the desired collection
@@ -14,15 +13,10 @@ def connectDB(coll = "NASA"):
             return db.posts
         elif coll == 'users':
             return db.usuariosnasa
-        # elif coll == 'logs':
-        #     return db.logsflaskapp
-
 
     except Exception as e:
         print(e)
-        print ("Error trying to connect to database")
-
-
+        print("Error trying to connect to database")
 
 #Receive a document and insert in the database
 def dbinsert(DocumentoInserir):

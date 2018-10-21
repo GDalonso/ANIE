@@ -23,6 +23,7 @@
             <label for="senha">Password</label>
             <input type="password" id="senha" name="senha" class="form-control" required minlength="6" pattern="[0-9a-fA-F]{6-100}" placeholder="6 digitos, uma maiuscula, uma minuscula e um número">
           </div>
+          {% include "flash.html" %}
           <button type="submit" class="btn  btn-salvar btn-outline-primary btn-block">Salvar</button>
         </fieldset>
       </form>
