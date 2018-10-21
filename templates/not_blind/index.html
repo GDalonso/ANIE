@@ -1,19 +1,16 @@
 {% extends "template.html" %}
 {% block conteudo %}
 			<!-- start banner Area -->
-			<section class="banner-area relative" id="home">			
+			<section class="banner-area-map relative" id="home">
 				<div class="slider"><div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-				        <div class="carousel-inner" role="listbox">
-				          <!-- Slide One - Set the background image for this slide in the line below -->
-				          <div class="carousel-item active" style="background-image: url({{ url_for('static', filename='img/imagem.jpg') }})">
-				            <div class="carousel-caption d-md-block">
-				              <h2 class="title-header">PlantSat</h2>
-				              <p class="text-description">
-								Nós sabemos o que você cultiva.
-				              </p>
-				            </div>
-				          </div>
-				      </div>
+					<div class="carousel-inner" role="listbox">
+						<div class="carousel-item active" style="background-color:#015786; max-height:350px">
+							<div class="carousel-caption d-md-block">
+								<h2 class="title-header-map">ANIE</h2>
+							</div>
+						</div>
+					</div>
+					</div>
 				</div>
 			</section>
 			<!-- End banner Area -->	
@@ -24,15 +21,12 @@
 				<div class="container">
 					<div class="row d-flex align-items-center">
 						<div class="col-lg-6 about-left">
-							<img class="img-fluid" src="{{ url_for('static', filename='img/about-img.jpg') }}" alt="">
+							<img class="img-fluid" src="{{ url_for('static', filename='img/about-img.jpg') }}">
 						</div>
 						<div class="col-lg-6 about-right">
 							<h1>
-								O <b>PlantSat</b> é um software de identificação de culturas em imagens de satélite.
+								O é um software de identificação de culturas em imagens de satélite.
 							</h1>
-							<p style="font-color:black; font-size:1.3em;">
-								Para que nosso produdo se tornasse realidade, utilizamos Machine Learning para identificar a cultura cultivada. Machine Learning é um vertente da inteligência artificial que se baseia na ideia de que sistemas podem aprender com dados, identificar padrões e tomar decisões.
-							</p>
 						</div>
 					</div>
 				</div>	
